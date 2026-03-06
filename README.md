@@ -1,6 +1,7 @@
 # 🎓 LearnMate AI Coach  
 ### AI-Powered Career Roadmap Generator 🚀
-
+![Visitors](https://visitor-badge.laobi.icu/badge?page_id=MohammedSaad786.learnmate_ai_coach)
+![GitHub stars](https://img.shields.io/github/stars/Mohammed-Saad-786/learnmate-ai-coach)
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Gradio](https://img.shields.io/badge/Gradio-UI-orange)
 ![Groq](https://img.shields.io/badge/Groq-LLM-green)
