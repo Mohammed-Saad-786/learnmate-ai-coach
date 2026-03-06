@@ -20,8 +20,7 @@ LearnMate is an AI-powered career mentor that generates structured learning road
 
 ## 🌐 Live Demo
 
-(Coming soon)
-
+https://huggingface.co/spaces/MohammedSaad786/learnmate_ai_coach
 ## 📦 Installation
 
 ```bash
