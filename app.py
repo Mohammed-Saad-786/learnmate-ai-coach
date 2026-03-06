@@ -10,8 +10,7 @@ from fpdf import FPDF
 # ================================
 # API KEY
 # ================================
-client = Groq(api_key="GROQ_API_KEY")
-
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 # ================================
 # PDF FUNCTION
 def create_pdf(text):
