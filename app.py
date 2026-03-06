@@ -2,7 +2,7 @@
 # INSTALL
 # ================================
 # !pip install groq gradio fpdf
-
+import os
 from groq import Groq
 import gradio as gr
 from fpdf import FPDF
@@ -146,7 +146,7 @@ def download_pdf(text):
 # ================================
 # UI
 # ================================
-with gr.Blocks(theme=gr.themes.Soft()) as demo:
+with gr.Blocks() as demo:
 
     gr.Markdown("# 🎓 LearnMate AI Coach")
     gr.Markdown("Chat with your AI career mentor 🚀")
@@ -177,4 +177,4 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
         outputs=pdf_output
     )
 
-demo.launch()
+demo.launch(theme=gr.themes.Soft())
