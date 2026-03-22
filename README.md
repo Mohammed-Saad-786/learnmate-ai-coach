@@ -18,11 +18,11 @@ The system uses **LLM-powered guidance** to simulate a personalized **AI career 
 
 🚀 **Try the App**
 
-👉 https://mohammedsaad786-learnmate-ai-coach.hf.space
+👉 https://mohd-saad-learnmate-ai-coach.hf.space
 
 💻 **Hugging Face Space**
 
-👉 https://huggingface.co/spaces/MohammedSaad786/learnmate_ai_coach
+👉 https://huggingface.co/spaces/mohd-saad/learnmate_ai_coach
 
 ---
 
