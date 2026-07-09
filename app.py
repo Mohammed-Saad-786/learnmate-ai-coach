@@ -7,6 +7,8 @@ from groq import Groq
 import gradio as gr
 from fpdf import FPDF
 
+
+port = int(os.environ.get("PORT", 7860))
 # ================================
 # API KEY
 # ================================
@@ -177,4 +179,7 @@ with gr.Blocks() as demo:
         outputs=pdf_output
     )
 
-demo.launch(theme=gr.themes.Soft())
+demo.launch(
+    server_name="0.0.0.0",
+    server_port=port
+)
