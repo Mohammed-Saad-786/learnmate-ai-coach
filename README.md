@@ -132,13 +132,7 @@ learnmate-ai-coach
 
 ---
 
-# 🎓 Internship Acknowledgement
-
-This project was developed as part of the **IBM SkillsBuild AI & Cloud Internship** conducted by **Edunet Foundation**.
-
-The project was created as my **final internship submission** for the program titled:
-
-**AI & Cloud Technology Internship**
+# 🎓 Acknowledgement
 
 Through this internship, I gained hands-on experience in:
 
