@@ -6,6 +6,14 @@
 ![Gradio](https://img.shields.io/badge/Gradio-UI-orange)
 ![Groq](https://img.shields.io/badge/Groq-LLM-green)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
+<p align="left">
+  <img src="https://img.shields.io/github/stars/Mohammed-Saad-786/learnmate-ai-coach?style=for-the-badge" alt="Stars" />
+  <img src="https://img.shields.io/github/forks/Mohammed-Saad-786/learnmate-ai-coach?style=for-the-badge" alt="Forks" />
+  <img src="https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/Gradio-UI-FF9800?style=for-the-badge&logo=gradio&logoColor=white" alt="Gradio" />
+  <img src="https://img.shields.io/badge/Groq-LLM-00C853?style=for-the-badge" alt="Groq" />
+  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" />
+</p>
 
 **LearnMate AI Coach** is an AI-powered career mentoring assistant that generates **structured learning roadmaps for tech domains**.  
 It helps students and beginners identify the **right learning path, tools, and courses** based on their current skill level.
