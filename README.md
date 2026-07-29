@@ -25,7 +25,15 @@
 </a>
 
 </p>
+<p align="left">
 
+<img src="https://skillicons.dev/icons?i=python,git,github,vscode,docker"/>
+
+<br>
+
+<img src="https://skillicons.dev/icons?i=fastapi"/>
+
+</p>
 **LearnMate AI Coach** is an AI-powered career mentoring assistant that generates **structured learning roadmaps for tech domains**.  
 It helps students and beginners identify the **right learning path, tools, and courses** based on their current skill level.
 
