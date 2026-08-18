@@ -84,10 +84,11 @@ This creates a **guided learning experience** similar to having a real mentor.
 - Gradio UI
 
 ### PDF Generation
-- FPDF
+- ReportLab
 
 ### Deployment
 - Hugging Face Spaces
+- Render
 
 ---
 
@@ -149,7 +150,7 @@ Through this internship, I gained hands-on experience in:
 
 # 📈 Future Improvements
 
-- Support for **more tech domains**
+
 - Learning roadmap **visualization**
 - **User progress tracking**
 - **Authentication system**
