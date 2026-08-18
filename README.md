@@ -84,7 +84,7 @@ This creates a **guided learning experience** similar to having a real mentor.
 - Gradio UI
 
 ### PDF Generation
-- ReportLab
+- reportlab
 
 ### Deployment
 - Hugging Face Spaces
