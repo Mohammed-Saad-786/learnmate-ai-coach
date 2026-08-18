@@ -5,10 +5,12 @@
 import os
 from groq import Groq
 import gradio as gr
-from fpdf import FPDF
+from reportlab.platypus import SimpleDocTemplate, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+import re
 
 
-port = int(os.environ.get("PORT", 7860))
+
 # ================================
 # API KEY
 # ================================
@@ -20,18 +22,21 @@ def create_pdf(text):
     if not text:
         text = "No roadmap generated."
 
-    # Convert unicode to safe latin characters
-    text = text.encode("latin-1", "replace").decode("latin-1")
-
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font("Arial", size=11)
-
-    for line in text.split("\n"):
-        pdf.multi_cell(0, 8, line)
+     # Remove emojis/non-ASCII (optional if you use a Unicode font)
+    text = re.sub(r"[^\x00-\x7F]+", "", text)
 
     file_path = "/tmp/learnmate_roadmap.pdf"
-    pdf.output(file_path)
+
+    doc = SimpleDocTemplate(file_path)
+    styles = getSampleStyleSheet()
+
+    story = []
+
+    for line in text.split("\n"):
+        if line.strip():
+            story.append(Paragraph(line.replace("&", "&amp;"), styles["BodyText"]))
+
+    doc.build(story)
 
     return file_path
 
@@ -74,7 +79,6 @@ def generate_steps(domain, step, level):
 Domain: {domain}
 Step: {step}
 Level: {level}
-
 Write 3 bullet points using *
 """
 
@@ -89,7 +93,49 @@ Write 3 bullet points using *
 # ================================
 # CHAT FUNCTION
 # ================================
+latest_response = ""
+# ================================
+# CAREER QUERY CLASSIFIER
+# ================================
+def is_career_query(message):
+    prompt = f"""
+You are a classifier.
+Determine whether the user's query is asking about:
+- becoming a profession
+- career roadmap
+- skills required
+- salary
+- job roles
+- certifications
+- education path
+- career growth
+Answer ONLY one word:
+YES or NO
+User: {message}
+"""
+
+    res = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    return res.choices[0].message.content.strip().upper() == "YES"
+    
 def learnmate(message, history, level):
+    global latest_response
+
+    if not is_career_query(message):
+        return (
+            "🎓 I am LearnMate AI Coach.\n\n"
+            "I specialize in career guidance and roadmaps.\n\n"
+            "Please ask questions such as:\n"
+            "• How to become an Artist?\n"
+            "• Doctor career roadmap\n"
+            "• Skills needed for a Pilot\n"
+            "• Fashion Designer salary\n"
+            "• Chef career path\n"
+            "• AI Engineer roadmap"
+        )
 
     msg=message.lower()
 
@@ -111,14 +157,14 @@ def learnmate(message, history, level):
             ai=generate_steps("frontend",step,level)
             text+=f"{step}\n{ai}\n\n"
 
-        return text, text
+        latest_response = text
+        return text
 
     else:
 
         prompt=f"""
 User wants roadmap for {message}
 Level: {level}
-
 Provide roadmap, roles, salary India, tools and courses
 """
 
@@ -129,25 +175,42 @@ Provide roadmap, roles, salary India, tools and courses
 
         text=res.choices[0].message.content
 
-        return text, text
+        latest_response = text
+        return text
 
 
 # ================================
 # PDF DOWNLOAD
 # ================================
-def download_pdf(text):
+def download_pdf():
+    global latest_response
 
-    if not text:
+    try:
+        if not latest_response:
+            raise ValueError("No roadmap available.")
+
+        return create_pdf(latest_response)
+
+    except Exception as e:
+        print("PDF Error:", e)
         return None
-
-    path=create_pdf(text)
-
-    return path
-
 
 # ================================
 # UI
 # ================================
+def prepare_download():
+    path = download_pdf()
+
+    if path is None:
+        return gr.DownloadButton(
+            visible=False
+        )
+
+    return gr.DownloadButton(
+        label="📥 Download Roadmap PDF",
+        value=path,
+        visible=True
+    )
 with gr.Blocks() as demo:
 
     gr.Markdown("# 🎓 LearnMate AI Coach")
@@ -159,27 +222,32 @@ with gr.Blocks() as demo:
         label="Select Level"
     )
 
-    state = gr.State()
+    
 
     chatbot = gr.ChatInterface(
         fn=learnmate,
         additional_inputs=[level],
-        additional_outputs=[state]
+        textbox=gr.Textbox(
+        placeholder="Example: I want to become a Full Stack Developer 🚀"
+    )
     )
 
     gr.Markdown("### 📄 Download Roadmap")
 
     pdf_btn = gr.Button("Generate PDF")
 
-    pdf_output = gr.File()
+    pdf_output = gr.DownloadButton(
+    label="📥 Download Roadmap PDF",
+    visible=False
+    )
 
     pdf_btn.click(
-        fn=download_pdf,
-        inputs=state,
-        outputs=pdf_output
+    fn=prepare_download,
+    outputs=pdf_output
     )
 
 demo.launch(
     server_name="0.0.0.0",
-    server_port=port
+    server_port=7860,
+    
 )
