@@ -78,13 +78,13 @@ This creates a **guided learning experience** similar to having a real mentor.
 
 ### AI / Backend
 - Groq API  
-- LLaMA 3.3 70B Model
+- openai/gpt-oss-20b
 
 ### Frontend
 - Gradio UI
 
 ### PDF Generation
-- reportlab
+- ReportLab
 
 ### Deployment
 - Hugging Face Spaces
@@ -94,8 +94,12 @@ This creates a **guided learning experience** similar to having a real mentor.
 
 # ⚙️ System Workflow
 
-1️⃣ User enters a **tech domain** (example: frontend, AI, cloud)  
-2️⃣ User selects their **skill level**  
+<img width="2720" height="1500" alt="learnmate_architecture_v3" src="https://github.com/user-attachments/assets/60987d30-b601-401b-aa44-5f1287cb7c6b" />
+
+
+
+1️⃣ User selects their **skill level**  
+2️⃣ User enters a **tech domain** (example: frontend, AI, cloud)  
 3️⃣ AI generates a **personalized learning roadmap**  
 4️⃣ System suggests **courses, roles, and tools**  
 5️⃣ User can **download the roadmap as a PDF**
