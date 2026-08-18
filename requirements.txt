@@ -1,3 +1,3 @@
-groq
-gradio
-fpdf
+gradio==6.20.0
+groq==0.31.0
+reportlab==4.2.2
