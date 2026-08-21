@@ -1073,7 +1073,79 @@ def prepare_download():
 # GRADIO UI
 # ================================
 
-with gr.Blocks() as demo:
+with gr.Blocks(
+    css="""
+    /* Keep the existing appearance */
+    
+    @media (max-width: 768px) {
+        /* Make the entire app fit the phone width */
+        .gradio-container {
+            width: 100% !important;
+            max-width: 100% !important;
+            padding-left: 8px !important;
+            padding-right: 8px !important;
+            box-sizing: border-box !important;
+        }
+        /* Prevent components from becoming wider than screen */
+        .gradio-container > * {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        /* Chat component */
+        .chatbot {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        .message {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+}
+        
+        p, pre, code {
+            max-width: 100% !important;
+}
+        /* Mobile table fix */
+.chatbot table,
+.message table {
+    display: block !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+    min-width: 650px !important;
+}
+/* Keep table words intact */
+.chatbot table th,
+.chatbot table td,
+.message table th,
+.message table td {
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+}
+        /* Input */
+        textarea {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        /* Buttons */
+        button {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+    }
+   @media (max-width: 480px) {
+    .gradio-container {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    .chatbot {
+        width: 100% !important;
+    }
+    .message {
+        max-width: 100% !important;
+    }
+}
+    """
+) as demo:
 
     gr.Markdown(
         "# 🎓 LearnMate AI Coach"
